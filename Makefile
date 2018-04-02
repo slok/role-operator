@@ -22,6 +22,8 @@ UNIT_TEST_CMD := ./hack/scripts/unit-test.sh
 INTEGRATION_TEST_CMD := ./hack/scripts/integration-test.sh 
 MOCKS_CMD := ./hack/scripts/mockgen.sh
 DOCKER_RUN_CMD := docker run -v ${PWD}:$(DOCKER_GO_SERVICE_PATH) --rm -it $(SERVICE_NAME)
+GENERATE_K8S_CODE_CMD := ./hack/scripts/generate-k8s-code.sh 
+
 # environment dirs
 DEV_DIR := docker/dev
 
@@ -66,3 +68,7 @@ ci: ci-integration-test
 .PHONY: mocks
 mocks: build
 	$(DOCKER_RUN_CMD) /bin/sh -c '$(MOCKS_CMD)'
+
+.PHONY: generate-k8s-code
+generate-k8s-code:
+	$(GENERATE_K8S_CODE_CMD)
