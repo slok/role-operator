@@ -1,0 +1,27 @@
+# We will force(override) to our own kubernetes versions, this is the best
+# way of ensuring that all of our dependencies that have also kubernetes
+# dependencies are forced to use the versions that we want.
+[[override]]
+  name = "k8s.io/api"
+  version = "kubernetes-1.9.6"
+
+[[override]]
+  name = "k8s.io/apimachinery"
+  version = "kubernetes-1.9.6"
+
+[[override]]
+  name = "k8s.io/client-go"
+  version = "kubernetes-1.9.6"
+
+[[override]]
+  name = "k8s.io/apiextensions-apiserver"
+  version = "kubernetes-1.9.6"
+
+# No kubernetes dependencies.
+[[constraint]]
+  name = "github.com/spotahome/kooper"
+  version = "0.2.0"
+
+[prune]
+  go-tests = true
+  unused-packages = true
