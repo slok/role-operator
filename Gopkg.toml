@@ -22,6 +22,10 @@
   name = "github.com/spotahome/kooper"
   version = "0.2.0"
 
+[[constraint]]
+  name = "github.com/rs/zerolog"
+  version = "1.6.0"
+
 [prune]
   go-tests = true
   unused-packages = true
