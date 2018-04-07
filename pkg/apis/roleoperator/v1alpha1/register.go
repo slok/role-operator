@@ -15,10 +15,11 @@ const (
 
 // Workspace constants
 const (
-	PermissionKind       = "Permission"
-	PermissionName       = "permission"
-	PermissionNamePlural = "permissions"
-	PermissionScope      = apiextensionsv1beta1.ClusterScoped
+	MultiRoleBindingKind       = "MultiRoleBinding"
+	MultiRoleBindingName       = "multirolebinding"
+	MultiRoleBindingNamePlural = "multirolebindings"
+	MultiRoleBindingNameMin    = "mrb"
+	MultiRoleBindingScope      = apiextensionsv1beta1.NamespaceScoped
 )
 
 // SchemeGroupVersion is group version used to register these objects
@@ -37,7 +38,8 @@ var (
 // Adds the list of known types to Scheme.
 func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
-		&Permission{},
+		&MultiRoleBinding{},
+		&MultiRoleBindingList{},
 	)
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil

@@ -27,7 +27,7 @@ import (
 
 type RoleoperatorV1alpha1Interface interface {
 	RESTClient() rest.Interface
-	PermissionsGetter
+	MultiRoleBindingsGetter
 }
 
 // RoleoperatorV1alpha1Client is used to interact with features provided by the roleoperator.slok.xyz group.
@@ -35,8 +35,8 @@ type RoleoperatorV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *RoleoperatorV1alpha1Client) Permissions() PermissionInterface {
-	return newPermissions(c)
+func (c *RoleoperatorV1alpha1Client) MultiRoleBindings(namespace string) MultiRoleBindingInterface {
+	return newMultiRoleBindings(c, namespace)
 }
 
 // NewForConfig creates a new RoleoperatorV1alpha1Client for the given config.

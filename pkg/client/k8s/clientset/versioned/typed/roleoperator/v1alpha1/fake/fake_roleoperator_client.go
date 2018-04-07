@@ -28,8 +28,8 @@ type FakeRoleoperatorV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeRoleoperatorV1alpha1) Permissions() v1alpha1.PermissionInterface {
-	return &FakePermissions{c}
+func (c *FakeRoleoperatorV1alpha1) MultiRoleBindings(namespace string) v1alpha1.MultiRoleBindingInterface {
+	return &FakeMultiRoleBindings{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate
