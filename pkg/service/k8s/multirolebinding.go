@@ -14,11 +14,11 @@ import (
 // MultiRoleBinding knows how to manage the CRD MultiRoleBinding.
 type MultiRoleBinding interface {
 	// EnsureCRD will register the CRD.
-	EnsureCRD() error
+	MultiRoleBindingEnsureCRD() error
 	// List will list MultiRoleBinding CRs.
-	List(namespace string, opts metav1.ListOptions) (*roleoperatorv1alpha1.MultiRoleBindingList, error)
+	MultiRoleBindingList(namespace string, opts metav1.ListOptions) (*roleoperatorv1alpha1.MultiRoleBindingList, error)
 	// Watch will watch MultiRoleBinding CRs.
-	Watch(namespace string, opts metav1.ListOptions) (watch.Interface, error)
+	MultiRoleBindingWatch(namespace string, opts metav1.ListOptions) (watch.Interface, error)
 }
 
 type multiRoleBinding struct {
@@ -40,7 +40,7 @@ func NewMultiRoleBinding(aeClient apiextensionscli.Interface, rocli roleoperator
 }
 
 // EnsureCRD satisfies MultiRoleBinding interface.
-func (m *multiRoleBinding) EnsureCRD() error {
+func (m *multiRoleBinding) MultiRoleBindingEnsureCRD() error {
 	crdConf := crd.Conf{
 		NamePlural: roleoperatorv1alpha1.MultiRoleBindingNamePlural,
 		Kind:       roleoperatorv1alpha1.MultiRoleBindingKind,
@@ -52,11 +52,11 @@ func (m *multiRoleBinding) EnsureCRD() error {
 }
 
 // List satisfies MultiRoleBinding interface.
-func (m *multiRoleBinding) List(namespace string, opts metav1.ListOptions) (*roleoperatorv1alpha1.MultiRoleBindingList, error) {
+func (m *multiRoleBinding) MultiRoleBindingList(namespace string, opts metav1.ListOptions) (*roleoperatorv1alpha1.MultiRoleBindingList, error) {
 	return m.rocli.RoleoperatorV1alpha1().MultiRoleBindings(namespace).List(opts)
 }
 
 // Watch satisfies MultiRoleBinding interface.
-func (m *multiRoleBinding) Watch(namespace string, opts metav1.ListOptions) (watch.Interface, error) {
+func (m *multiRoleBinding) MultiRoleBindingWatch(namespace string, opts metav1.ListOptions) (watch.Interface, error) {
 	return m.rocli.RoleoperatorV1alpha1().MultiRoleBindings(namespace).Watch(opts)
 }
